@@ -1,0 +1,22 @@
+{
+  "name": "markup-blueprint",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "connect": "latest",
+    "serve-static": "latest",
+    "connect-livereload": "latest",
+    "gulp": "latest",
+    "gulp-load-plugins": "latest",
+    "gulp-livereload": "latest"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  }
+}
