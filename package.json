@@ -14,7 +14,8 @@
     "connect-livereload": "latest",
     "gulp": "latest",
     "gulp-load-plugins": "latest",
-    "gulp-livereload": "latest"
+    "gulp-livereload": "latest",
+    "gulp-jade": "latest"
   },
   "engines": {
     "node": ">=0.10.0"
