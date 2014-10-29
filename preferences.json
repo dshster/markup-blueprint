@@ -1,0 +1,6 @@
+{
+	"template": "template",
+	"app": "app",
+	"styles": "content/styles",
+	"compile": "app/compile"
+}

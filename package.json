@@ -15,8 +15,12 @@
     "gulp": "latest",
     "gulp-load-plugins": "latest",
     "gulp-livereload": "latest",
-    "gulp-jade": "latest"
-  },
+    "gulp-jade": "latest",
+    "gulp-less": "latest",
+    "gulp-rename": "latest",
+    "gulp-filesize": "latest",
+    "gulp-autoprefixer": "latest"
+},
   "engines": {
     "node": ">=0.10.0"
   }
