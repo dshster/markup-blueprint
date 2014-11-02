@@ -1,0 +1,22 @@
+{
+  "name": "markup-blueprint",
+  "version": "0.0.0",
+  "homepage": "https://github.com/dshster/markup-blueprint",
+  "authors": [
+    "Dmitry Shvalyov <dsh-creative+subscription@yandex.ru>"
+  ],
+  "moduleType": [
+    "globals"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "normalize-less": "*"
+  }
+}

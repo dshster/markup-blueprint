@@ -1,7 +1,10 @@
 extends ./html.jade
 
 block content
-	h1 Jade - node template engine
-	h2 Second level header
-	h3 Third level
+	+grid
+		+row
+			+col(3, 8)
+				h1 Jade - node template engine
+			+col(11, 5)
+				p Grid system
 

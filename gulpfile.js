@@ -38,7 +38,7 @@ gulp.task('server', function(next) {
 		port: 35729
 	}));
 	server.use(servestatic(paths.app));
-	server.listen(process.env.PORT || 80, next);
+	server.listen(process.env.PORT || 3000, next);
 });
 
 gulp.task('watch', ['server'], function() {
