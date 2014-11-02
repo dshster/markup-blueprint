@@ -2,9 +2,12 @@ extends ./html.jade
 
 block content
 	+grid
-		+row
-			+col(3, 8)
-				h1 Jade - node template engine
-			+col(11, 5)
-				p Grid system
-
+		.header
+			+row
+				+col(2, 5)
+					.gravatar
+						img.gravatar__img(src='https://s.gravatar.com/avatar/83a344f76b05b92ff76e38e40ad91dd9?s=80')
+					h1.heading-h1 Dmitry Shvalyov
+					p.sub-heading
+						a.link(href='https://github.com/dshster') View My GitHub Profile
+				+col(6, 9)
