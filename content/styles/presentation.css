@@ -1,0 +1,13 @@
+.list {
+  width: 100%;
+  box-sizing: border-box;
+  background-image: url('../images/19.jpg');
+  background-size: cover;
+}
+.caption {
+  color: #fff;
+  font-size: 14px;  
+}
+.caption h1 {
+  text-shadow: 1px 2px 0 #333;
+}
