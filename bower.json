@@ -1,0 +1,22 @@
+{
+  "name": "presentation",
+  "version": "1.0.0",
+  "homepage": "https://github.com/dshster/markup-blueprint",
+  "authors": [
+    "Dmitry Shvalyov <dsh-creative+subscription@yandex.ru>"
+  ],
+  "main": "index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "normalize-less": "*",
+    "shower-core": "~1.0.7",
+    "shower-ribbon": "~1.0.11"
+  }
+}

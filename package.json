@@ -1,0 +1,34 @@
+{
+  "name": "presentation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "dependencies": {
+    "bower": "^1.3.12",
+    "gulp": "^3.8.9",
+    "connect-livereload": "^0.5.0",
+    "gulp-autoprefixer": "^1.0.1",
+    "connect": "^3.3.2",
+    "gulp-livereload": "^2.1.1",
+    "gulp-load-plugins": "^0.7.1",
+    "gulp-filesize": "^0.0.6",
+    "gulp-jade": "^0.9.0",
+    "gulp-less": "^1.3.6",
+    "serve-static": "^1.7.1",
+    "gulp-rename": "^1.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dshster/markup-blueprint.git"
+  },
+  "author": "Dmitry Shvalyov <dsh-creative+subscription@yandex.ru>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dshster/markup-blueprint/issues"
+  },
+  "homepage": "https://github.com/dshster/markup-blueprint"
+}
