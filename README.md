@@ -42,7 +42,7 @@
 > По-умолчанию пакет устанавливается в папку node_modules разрабатываемого пакета. Если у устанавливаемого пакета есть свои зависимости они тоже устанавливаются в папку node_modules в корне самого пакета (рекурсивная зависимость)
 
 > **Важно!**
-> Некоторые пакеты используются в командной строке в любой директории, для этого они должны быть установлены глобально (с флагом -g) и путь их установки должен быть прописан в переменной окружения PATH
+> Некоторые пакеты используются в командной строке (CLI: Command-line interface) в любой директории, для этого они должны быть установлены глобально (с флагом -g) и путь их установки должен быть прописан в переменной окружения PATH
 
 ### Автоматическая установка пакетов
 
@@ -50,6 +50,78 @@
 
 При установке пакета на продакшн командой ``npm install --production`` или сокращенно ``npm i --production`` пакеты из секции devDependencies установлены не будут <sup>[8]</sup>
 
+## Пакеты для сборки
+
+### Gulp.js
+
+``npm install -g gulp``
+
+``npm install gulp --save-dev``
+
+> Gulp.js (Gulp) - потоковый менеджер задач (task runner) для сборки проектов
+
+> Gulp - Node пакет работающий в командной строке (CLI) и предоставляющий интерфейс для поочередного запуска других пакетов, работы с файлами и каталогами через маски
+
+#### Gulpfile.js
+
+> Gulpfile - javascript файл описывающий подключение пакетов, задачи gulp и при необходимости сервисные функции. <sup>[9]</sup>
+
+> Gulpfile создаётся в корне проекта
+
+``touch Gulpfile.js``
+
+![Unix-way](content/images/touch-gulpfile.png)
+
+> При запуске Gulp без параметов при пустом Gulpfile выдаётся сообщение об отсутствии задачи с именем **default**, которая выполняется по-умолчанию
+
+![Unix-way](content/images/gulpfile-blank.png)
+
+> В параметрах вызова Gulp можно передать имя задачи
+
+> Откроем на редактирование Gulpfile.js. Весь javascript будем писать в Strict-режиме
+
+> Подключим пакет Gulp и создадим задачу по-умолчанию:
+
+```javascript
+'use strict';
+
+var gulp = require('gulp');
+
+gulp.task('default');
+```
+
+#### Lesscss
+
+``npm install gulp-less --save-dev``
+
+```javascript
+var gulp = require('gulp'),
+    rename = require('gulp-rename'),
+    less = require('gulp-less');
+
+gulp.task('lesscss', function() {
+	gulp.src('./styles.less')
+	    .pipe(less())
+	    .pipe(rename('styles.css'))
+	    .pipe(gulp.dest('./'));
+});
+
+gulp.task('default', ['lesscss']);
+```
+
+> Функция gulp.src образует поток (stream) который направляется в трубу (pipe). Каждый сегмент трубы содержит пакет-обработчик и снова образует поток. Таким образом на один поток можно ставить несколько обработчиков
+
+> Обработчик gulp.dest записывает текущий поток в указанную папку. Имя файла при этом сохраняется исходное и чтобы его изменить применяется пакет gulp-rename <sup>[10]</sup>
+
+> gulp.dest не завершает поток, а вставляется в секцию трубы
+
+?? Описание масок и соглашение об именах файлов
+
+> ``npm install gulp-rename --save-dev``
+
+#### Livereload
+#### Autoprefixer
+#### Jade
 
 ---
 
@@ -61,3 +133,5 @@
 [6]:https://www.npmjs.org/doc/files/package.json.html "Specifics of npm's package.json handling"
 [7]:http://browsenpm.org/package.json "package.json structure"
 [8]:http://howtonode.org/managing-module-dependencies "Managing module dependencies"
+[9]:https://www.npmjs.org/package/gulp "The streaming build system"
+[10]:https://github.com/hparra/gulp-rename "gulp-rename"
