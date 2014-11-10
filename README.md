@@ -154,9 +154,32 @@ gulp.task('default', ['lesscss']);
 * ``'/fonts/*.{ttf,svg,woff}'`` - расширение файла ttf или svg или woff
 * ``['filename.*', '!*.css']`` - любое расширение кроме css
 
->
-
 #### Livereload
+
+> Livereload - пакет позволяющий организовать автоматическую перезагрузку страницы в браузере при изменении шаблона или стилей
+
+> Для организации автоматической перезагрузки нам понадобятся:
+
+``npm install connect --save-dev``
+
+> Connect - фреймворк являющийся прослойкой (middleware) к http серверу для обработки запросов
+
+``npm install serve-static --save-dev``
+
+> Connect middleware для вывода статичных файлов
+
+``npm install connect-livereload --save-dev``
+
+> Connect middleware для добавления скрипта livereload на страницу организовывающий асинхронное обновление стилей и обновление страницы при изменении шаблонов
+
+``npm install livereload --save-dev``
+
+> Livereload сервер
+
+##### Таск server
+
+
+
 #### Jade
 
 ---
