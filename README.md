@@ -100,10 +100,10 @@ var gulp = require('gulp'),
     less = require('gulp-less');
 
 gulp.task('lesscss', function() {
-	return gulp.src('./styles.less')
-	           .pipe(less())
-	           .pipe(rename('styles.css'))
-	           .pipe(gulp.dest('./'));
+  return gulp.src('./styles.less')
+             .pipe(less())
+             .pipe(rename('styles.css'))
+             .pipe(gulp.dest('./'));
 });
 
 gulp.task('default', ['lesscss']);
@@ -111,18 +111,52 @@ gulp.task('default', ['lesscss']);
 
 > Функция gulp.src образует поток (stream) который направляется в трубу (pipe). Каждый сегмент трубы вызывает пакет-обработчик и снова образует поток. Таким образом на один поток можно ставить несколько обработчиков
 
-> Обработчик gulp.dest записывает текущий поток в файл в указанную папку. Имя файла при этом сохраняется исходное и чтобы его изменить применяется пакет gulp-rename <sup>[10]</sup>
+> Обработчик gulp.dest записывает текущий поток в файл в указанную папку. Имя файла при этом сохраняется исходное и чтобы его изменить применяется пакет gulp-rename <sup>[10]</sup> ``npm install gulp-rename --save-dev``
 
 > gulp.dest не завершает поток, а вставляется в секцию трубы
 
-?? Описание масок и соглашение об именах файлов
+#### Autoprefixer
 
-?? https://www.npmjs.org/package/globby
+``npm install gulp-autoprefixer --save-dev``
 
-> ``npm install gulp-rename --save-dev``
+> **autoprefixer** пакет для автоматической подстановки вендорных префиксов к свойствам. Данные берутся из базы сайта http://caniuse.com/
+
+> Чтобы не объявлять каждый пакет в отдельную переменную используем пакет gulp-load-plugins <sup>[11]</sup>, который автоматический загружает пакеты в объект при обращении. Установка: ``npm install gulp-load-plugins --save-dev``
+
+> В итоге задача **lesscss** будет выглядеть так:
+
+```javascript
+var gulp = require('gulp'),
+    plugins = require('gulp-load-plugins')();
+
+gulp.task('lesscss', function() {
+  return gulp.src('./styles.less')
+             .pipe(plugins.less())
+             .pipe(plugins.autoprefixer(
+                 ['last 3 versions', 'ie 9', 'ie 10', 'opera 12']
+              ))
+             .pipe(plugins.rename('styles.css'))
+             .pipe(gulp.dest('./'));
+});
+
+gulp.task('default', ['lesscss']);
+```
+
+#### Шаблоны имён файлов
+
+> gulp.src может принимать не только один файл, но и массив имён и массив шаблонов <sup>[12]</sup>
+
+* ``'*.js'`` - любое имя файла
+* ``'filename.*'`` - любое расширение
+* ``'/*/filename.js'`` - любой каталог
+* ``'/**/*.js'`` - любой вложенный каталог
+* ``'/{foo,bar}/*.js'`` - каталог foo или bar
+* ``'/fonts/*.{ttf,svg,woff}'`` - расширение файла ttf или svg или woff
+* ``['filename.*', '!*.css']`` - любое расширение кроме css
+
+>
 
 #### Livereload
-#### Autoprefixer
 #### Jade
 
 ---
@@ -137,3 +171,5 @@ gulp.task('default', ['lesscss']);
 [8]:http://howtonode.org/managing-module-dependencies "Managing module dependencies"
 [9]:https://www.npmjs.org/package/gulp "The streaming build system"
 [10]:https://github.com/hparra/gulp-rename "gulp-rename"
+[11]:https://github.com/jackfranklin/gulp-load-plugins "gulp-load-plugins"
+[12]:https://github.com/isaacs/minimatch "A minimal matching utility"
