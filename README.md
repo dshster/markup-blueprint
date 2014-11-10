@@ -142,6 +142,10 @@ gulp.task('lesscss', function() {
 gulp.task('default', ['lesscss']);
 ```
 
+#### ??? Watch
+
+
+
 #### Шаблоны имён файлов
 
 > gulp.src может принимать не только один файл, но и массив имён и массив шаблонов <sup>[12]</sup>
@@ -176,7 +180,21 @@ gulp.task('default', ['lesscss']);
 
 > Livereload сервер
 
-##### Таск server
+##### Задача server
+
+```javascript
+gulp.task('server', function(next) {
+  var server = require('connect')(),
+      servestatic = require('serve-static');
+
+  server.use(require('connect-livereload')({
+    port: 35729
+  }));
+
+  server.use(servestatic('./app'));
+  server.listen(3000, next);
+});
+```
 
 
 
