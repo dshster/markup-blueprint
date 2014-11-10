@@ -205,11 +205,32 @@ gulp.task('server', function(next) {
     port: 35729
   }));
 
-  server.use(servestatic('./app'));
+  server.use(servestatic('./app', {
+    'index': ['index.html', 'index.htm']
+  }));
   server.listen(3000, next);
 });
 ```
 
+> servestatic обеспечивает доступ к статичным файлам в каталоге app, а server.listen прослушивание порта 3000 по адресу http://127.0.0.1
+
+##### Задача watch
+
+```javascript
+gulp.task('watch', ['server'], function() {
+  var liveserver = $.livereload();
+
+  gulp.watch(['*.less'], ['lesscss']);
+
+  gulp.watch(['*.css']).on('change', function(file) {
+    liveserver.changed(file.path);
+  });
+});
+```
+
+> За изменениями в файлах следит gulp.watch. При вызове watch запускается задача server и запускается мониторинг по шаблонам.
+
+> В премере первый мониторинг за less файлами вызывает задачу lesscss, при этом происходит компиляция в less в css который отслеживается вторым мониторингом и вызывает событие liveserver.changed с передачей имени изменённого файла
 
 
 #### Jade
