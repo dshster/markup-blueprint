@@ -136,7 +136,7 @@ gulp.task('lesscss', function() {
                  ['last 3 versions', 'ie 9', 'ie 10', 'opera 12']
               ))
              .pipe(plugins.rename('styles.css'))
-             .pipe(gulp.dest('./'));
+             .pipe(gulp.dest('./app/styles'));
 });
 
 gulp.task('default', ['lesscss']);
@@ -178,7 +178,7 @@ gulp.task('watch', function() {
 
 > Для организации автоматической перезагрузки нам понадобятся:
 
-``npm install connect --save-dev``
+``sudo npm install connect --save-dev``
 
 > Connect - фреймворк являющийся прослойкой (middleware) к http серверу для обработки запросов
 
@@ -190,9 +190,9 @@ gulp.task('watch', function() {
 
 > Connect middleware для добавления скрипта livereload на страницу организовывающий асинхронное обновление стилей и обновление страницы при изменении шаблонов
 
-``npm install livereload --save-dev``
+``sudo npm install gulp-livereload --save-dev``
 
-> Livereload сервер
+> Gulp livereload сервер
 
 ##### Задача server
 
@@ -208,6 +208,7 @@ gulp.task('server', function(next) {
   server.use(servestatic('./app', {
     'index': ['index.html', 'index.htm']
   }));
+
   server.listen(3000, next);
 });
 ```
@@ -218,11 +219,11 @@ gulp.task('server', function(next) {
 
 ```javascript
 gulp.task('watch', ['server'], function() {
-  var liveserver = $.livereload();
+  var liveserver = plugins.livereload();
 
   gulp.watch(['*.less'], ['lesscss']);
 
-  gulp.watch(['*.css']).on('change', function(file) {
+  gulp.watch(['./app/styles/*.css']).on('change', function(file) {
     liveserver.changed(file.path);
   });
 });
