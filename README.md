@@ -121,11 +121,17 @@ gulp.task('default', ['lesscss']);
 
 > gulp.dest не завершает поток, а вставляется в секцию трубы
 
-#### Autoprefixer
+#### Autoprefixer, CSSO
+
+> Для демонстрации работы потоков добавим два пакета для обработки CSS
 
 ``npm install gulp-autoprefixer --save-dev``
 
 > **autoprefixer** пакет для автоматической подстановки вендорных префиксов к свойствам. Данные берутся из базы сайта http://caniuse.com/
+
+``npm install gulp-csso --save-dev``
+
+> **CSSO** (CSS Optimizer) gulp-версия пакета оптимизации и минификации CSS файла. CSSO выполняет минимизацию как без изменения структуры, так и структурную оптимизацию <sup>[10.1]</sup>
 
 > Чтобы не объявлять каждый gulp-пакет в отдельную переменную используем пакет gulp-load-plugins <sup>[11]</sup>, который автоматический загружает пакеты в объект при обращении. Установка: ``npm install gulp-load-plugins --save-dev``
 
@@ -141,14 +147,15 @@ gulp.task('lesscss', function() {
              .pipe(plugins.autoprefixer(
                  ['last 3 versions', 'ie 9', 'ie 10', 'opera 12']
               ))
-             .pipe(plugins.rename('styles.css'))
+             .pipe(plugins.csso())
+             .pipe(plugins.rename('styles.min.css'))
              .pipe(gulp.dest('./app/styles'));
 });
 
 gulp.task('default', ['lesscss']);
 ```
 
-> Запуск из командной строки может выполняться без параметров ``grunt``, при этом выполняется задача default или с именем задачи в параметрах ``grunt lesscss``, тогда выполняется задача lesscss. Последнее может быть удобно при отладке определённой задачи без выполнения остальных
+> Запуск из командной строки может выполняться без параметров ``gulp``, при этом выполняется задача default или с именем задачи в параметрах ``gulp lesscss``, тогда выполняется задача lesscss. Последнее может быть удобно при отладке определённой задачи без выполнения остальных
 
 #### Шаблоны имён файлов
 
@@ -172,7 +179,7 @@ gulp.task('watch', function() {
 });
 ```
 
-> Запуск мониторинга ``grunt watch``. При изменениях в любом файле в текущем каталоге с расширением less запускается задача lesscss
+> Запуск мониторинга ``gulp watch``. При изменениях в любом файле в текущем каталоге с расширением less запускается задача lesscss
 
 > В одной задаче watch можно определять несколько шаблонов для мониторинга, либо одной функцией gulp.watch определяя шаблоны в массиве при вызове одной задачи, либо несколько gulp.watch с разными задачами.
 
@@ -237,8 +244,7 @@ gulp.task('watch', ['server'], function() {
 
 > За изменениями в файлах следит gulp.watch. При вызове watch запускается задача server и запускается мониторинг по шаблонам.
 
-> В премере первый мониторинг за less файлами вызывает задачу lesscss, при этом происходит компиляция в less в css который отслеживается вторым мониторингом и вызывает событие liveserver.changed с передачей имени изменённого файла
-
+> В примере первый мониторинг за less файлами вызывает задачу lesscss, при этом происходит компиляция less в css в каталоге ./app/styles/, который отслеживается вторым мониторингом и вызывает событие liveserver.changed с передачей имени изменённого файла. Livereload, при получении события changed отправляет имя файла браузеру и тот перерисовывает стили на странице
 
 #### Jade
 
@@ -257,6 +263,7 @@ gulp.task('watch', ['server'], function() {
 [8]:http://howtonode.org/managing-module-dependencies "Managing module dependencies"
 [9]:https://www.npmjs.org/package/gulp "The streaming build system"
 [10]:https://github.com/hparra/gulp-rename "gulp-rename"
+[10.1]:http://ru.bem.info/tools/optimizers/csso/ "CSS Optimizer"
 [11]:https://github.com/jackfranklin/gulp-load-plugins "gulp-load-plugins"
 [12]:https://github.com/isaacs/minimatch "A minimal matching utility"
 [13]:http://zencoder.ru/gulp-watch/ "gulp-watch"
