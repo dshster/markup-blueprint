@@ -22,6 +22,7 @@
 	.slide div {
 		margin: 0 0 13px;
 	}
+	.slide>div { padding-top: 55px; }
 	.slide pre .code {
 		margin: 0 70px 0 0;
 		line-height: 28px;
@@ -76,14 +77,15 @@
 	</div></section>
 
 	<section class="slide"><div>
-		<!-- переделать скриншот, уменьшить по высоте -->
-		<div style="position: absolute; clip: rect(195px 762px 925px 0px); margin: -220px 0 0;">
-			<img src="content/images/npm-init.png" alt="">
-		</div>
+		<img src="content/images/npm-init.png" alt="">
+	</div></section>
+
+	<section class="slide"><div>
+		<img src="content/images/package.png" alt="">
 	</div></section>
 
 	<section class="slide cover"><div>
-		<h2>Работа с пакетами</h2>
+		<h2>Пакеты Node.js</h2>
 	</div></section>
 
 	<section class="slide"><div>
@@ -159,7 +161,9 @@
 
 var gulp = require('gulp');
 
-gulp.task('default');
+gulp.task('default', function() {
+	console.log('default task');
+});
 		</div></pre>
 	</div></section>
 
@@ -174,14 +178,14 @@ gulp.task('default');
     rename = require('gulp-rename'),
     less = require('gulp-less');
 
-gulp.task('lesscss', function() {
+gulp.task('buildcss', function() {
   return gulp.src('./styles.less')
              .pipe(less())
              .pipe(rename('styles.css'))
              .pipe(gulp.dest('./'));
 });
 
-gulp.task('default', ['lesscss']);
+gulp.task('default', ['buildcss']);
 		</div></pre>
 	</div></section>
 
@@ -189,20 +193,53 @@ gulp.task('default', ['lesscss']);
 		<h2>Autoprefixer, CSSO</h2>
 		<div><code class="console-prompt">npm install <strong>gulp-autoprefixer</strong> --save-dev</code></div>
 		<div><code class="console-prompt">npm install <strong>gulp-csso</strong> --save-dev</code></div>
+		<div><code class="console-prompt">npm install <strong>gulp-load-plugins</strong> --save-dev</code></div>
 	</div></section>
 
 	<section class="slide"><div>
-		<pre><div class="code javascript">
+		<pre><div class="code javascript">var gulp = require('gulp'),
+    plugins = require('gulp-load-plugins')();
+
+gulp.task('buildcss', function() {
+	return gulp.src('./styles.less')
+	           .pipe(plugins.less())
+	           .pipe(plugins.autoprefixer(
+	              ['last 3 versions', 'ie 10', 'opera 12']
+	            ))
+	           .pipe(plugins.csso())
+	           .pipe(plugins.rename('styles.min.css'))
+	           .pipe(gulp.dest('./app/styles'));
+});
+
+gulp.task('default', ['buildcss']);
 		</div></pre>
 	</div></section>
 
 	<section class="slide"><div>
+		<h2>Шаблоны имён файлов</h2>
+		<ul>
+			<li><code>'*.js'</code> - любое имя файла</li>
+			<li><code>'filename.*'</code> - любое расширение</li>
+			<li><code>'/*/filename.js'</code> - любой каталог</li>
+			<li><code>'/**/*.js'</code> - любой вложенный каталог</li>
+			<li><code>'/{foo,bar}/*.js'</code> - каталог foo или bar</li>
+			<li><code>'/fonts/*.{ttf,svg,woff}'</code> - файл ttf, svg или woff</li>
+			<li><code>['filename.*', '!*.css']</code> - любое расширение кроме css</li>
+		</ul>
 	</div></section>
 
 	<section class="slide"><div>
+		<h2>Watch. Мониторинг изменений</h2>
+		<p><code class="console-prompt">gulp watch</code></p>
+<pre><div class="code javascript">gulp.task('watch', function() {
+	gulp.watch(['*.less'], ['buildcss']);
+});
+</div></pre>
+	<p>Запуск мониторинга <code>gulp.watch</code>. При изменениях в любом файле с расширением less в текущем каталоге запускается задача buildcss</p>
 	</div></section>
 
 	<section class="slide"><div>
+		<h2>Livereload. Автоматическое обновление</h2>
 	</div></section>
 
 	<section class="slide"><div>
