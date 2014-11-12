@@ -10,11 +10,17 @@
 
 > Любой желающий может создать и поделиться своим node-пакетом через npm, что делает экосистему всё больше и больше. На сегодняшний момент уже больше 104 тыс. доступных пакетов. <sup>[3]</sup> <sup>[4]</sup>
 
-?? Unix-way работа в консоли
+## Работа в консоли
+
+> Node.js изначально была частью экосистем *nix где большая часть приложений и утилит разработаны для работы в командной строке (CLI - Command Line Interface), поэтому для комфортной работы нужно полюбить командную строку (консоль) <sup>[4.1]</sup>
+
+> При должном уровне сноровки работа в консоли может быть намного производительнее, чем в файловом менеджере, особенно в терминале *nix с поддержкой автодополнения, истории ввода, копирования и вставки. Для Windows можно использовать эмуляторы терминала Cmder<sup>[4.2]</sup> или PowerShell<sup>[4.3]</sup>
+
+> Консоль позволяет удобно отслеживать возвращаемые оповещения, инструкции и ошибки не отвлекаясь от рабочего окна и не потеряв ничего важного
 
 ![Unix-way](content/images/unix-way.png)
 
-## Инициализация
+## Инициализация пакета (проекта)
 
 > Для Node любой проект является пакетом поэтому начало работы идёт с его описания в файле ``package.json``. Его можно создать вручую или ответив на несколько вопросов запустив команду:
 
@@ -242,6 +248,9 @@ gulp.task('watch', ['server'], function() {
 [2]:http://nodejs.org/ "Node.js"
 [3]:http://nodegeek.net/2014/01/node-js-ecosystem/ "Node.js ecosystem"
 [4]:https://www.npmjs.org/ "Node Packaged Modules"
+[4.1]:https://ru.wikipedia.org/wiki/Интерфейс_командной_строки "Интерфейс командной строки"
+[4.2]:http://bliker.github.io/cmder/ "cmder"
+[4.3]:https://ru.wikipedia.org/wiki/Windows_PowerShell "Windows PowerShell"
 [5]:https://www.npmjs.org/doc/cli/npm-init.html "Interactively create a package.json file"
 [6]:https://www.npmjs.org/doc/files/package.json.html "Specifics of npm's package.json handling"
 [7]:http://browsenpm.org/package.json "package.json structure"
