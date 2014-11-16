@@ -270,13 +270,65 @@ gulp.task('default', ['buildcss']);
 		</div></pre>
 	</div></section>
 
-	<section class="slide"><div>
+	<section class="slide cover"><div>
+		<h2>А что еще?</h2>
 	</div></section>
 
 	<section class="slide"><div>
+		<h2>Jade <span style="font-weight: 100;">[jād]</span>. Node Template Engine</h2>
+		<pre><div class="code jade">doctype html
+	html(lang="en")
+		head
+			title= pageTitle
+			script(src='jquery.min.js')
+		body
+			h1 Jade - node template engine
+			#container.col
+				if youAreUsingJade
+					p You are amazing
+				else
+					p Get on it!
+				p.
+					Jade is a terse and simple language with a
+					strong focus on performance powerful features.
+	</div></pre>
 	</div></section>
 
 	<section class="slide"><div>
+		<h3>Jade. Задача компиляции шаблона</h3>
+		<p><code class="console-prompt">npm install <strong>gulp-jade</strong> --save-dev</code></p>
+		<pre><div class="code javascript">gulp.task('template', function() {
+    return gulp.src('./index.jade')
+               .pipe(plugins.jade())
+               .on('error', function(error) {
+                 console.log(error);
+                 this.end();
+               })
+               .pipe(gulp.dest('./app'));
+});
+		</div></pre>
+	</div></section>
+
+	<section class="slide"><div>
+		<h3>Jade. Мониторинг и обновление</h3>
+		<pre><div class="code javascript">gulp.task('watch', ['server'], function() {
+	var liveserver = plugins.livereload();
+
+	gulp.watch(['*.less'], ['buildcss']);
+
+	gulp.watch(['*.jade'], ['template']);
+
+	gulp.watch([
+		'./app/styles/*.css',
+		'./app/*.html'
+	]).on('change', function(file) {
+		liveserver.changed(file.path);
+	});
+});
+		</div></pre>
+	</div></section>
+
+	<section class="slide cover cover-background" style="background-image: url('content/images/1396367592193_big.jpg')"><div>
 	</div></section>
 
 	<section class="slide"><div>

@@ -14,9 +14,9 @@
 
 **Полюбить командную строку (консоль)**
 
-> Node.js изначально была частью экосистем *nix где большая часть приложений и утилит разработаны для работы в командной строке (CLI - Command Line Interface), поэтому для комфортной работы нужно полюбить командную строку (консоль) <sup>[4.1]</sup>
+> Node.js изначально была частью экосистем *nix где большая часть приложений и утилит разработаны для работы в командной строке (CLI - Command Line Interface), поэтому для комфортной работы нужно полюбить командную строку (консоль) <sup>[5]</sup>
 
-> При должном уровне сноровки работа в консоли может быть намного производительнее, чем в файловом менеджере, особенно в терминале *nix с поддержкой автодополнения, истории ввода, копирования и вставки. Для Windows можно использовать эмуляторы терминала Cmder<sup>[4.2]</sup> или PowerShell<sup>[4.3]</sup>
+> При должном уровне сноровки работа в консоли может быть намного производительнее, чем в файловом менеджере, особенно в терминале *nix с поддержкой автодополнения, истории ввода, копирования и вставки. Для Windows можно использовать эмуляторы терминала Cmder<sup>[6]</sup> или PowerShell<sup>[7]</sup>
 
 > Консоль позволяет удобно отслеживать возвращаемые оповещения, инструкции и ошибки не отвлекаясь от рабочего окна и не потеряв ничего важного
 
@@ -34,7 +34,7 @@
 
 ![Unix-way](content/images/package.png)
 
-> Если в текущем каталоге были ранее установленные пакеты, то они пропишутся в секцию ``dependencies`` файла package.json <sup>[5]</sup> <sup>[6]</sup> <sup>[7]</sup>
+> Если в текущем каталоге были ранее установленные пакеты, то они пропишутся в секцию ``dependencies`` файла package.json <sup>[8]</sup> <sup>[9]</sup> <sup>[10]</sup>
 
 ## Пакеты Node.js
 
@@ -47,7 +47,7 @@
 * ``--save`` - ключ сохранения имени пакета в секцию dependencies файла package.json
 * ``--save-dev`` - ключ сохранения имени пакета в секцию devDependencies файла package.json
 
-> В секцию devDependencies прописываются пакеты участвующие при разработке проекта (тестирование, линтинг, минимизирование, компиляция). В dependencies - пакеты непосредственно подключаемые при работе пакета <sup>[8]</sup>
+> В секцию devDependencies прописываются пакеты участвующие при разработке проекта (тестирование, линтинг, минимизирование, компиляция). В dependencies - пакеты непосредственно подключаемые при работе пакета <sup>[11]</sup>
 
 > По-умолчанию пакет устанавливается в папку node_modules разрабатываемого пакета. Если у устанавливаемого пакета есть свои зависимости они тоже устанавливаются в папку node_modules в корне самого пакета (рекурсивная зависимость)
 
@@ -62,7 +62,7 @@
 
 ``npm install`` или сокращенно ``npm i`` при наличии прописанных пакетов в секции dependencies и в devDependencies файла package.json
 
-При установке пакета на продакшн командой ``npm install --production`` или сокращенно ``npm i --production`` пакеты из секции devDependencies установлены не будут <sup>[8]</sup>
+При установке пакета на продакшн командой ``npm install --production`` или сокращенно ``npm i --production`` пакеты из секции devDependencies установлены не будут <sup>[11]</sup>
 
 ## Пакеты для сборки
 
@@ -76,11 +76,11 @@
 
 ``npm install gulp --save-dev``
 
-> Gulp - Node пакет работающий в командной строке (CLI) и предоставляющий интерфейс для поочередного запуска других пакетов, работы с файлами и каталогами через маски
+> Gulp - Node пакет работающий в командной строке (CLI) и предоставляющий интерфейс для поочередного запуска других пакетов, передачи им потоков данных, выборку файлов и каталогов через шаблоны имён <sup>[12]</sup>
 
 #### Gulpfile.js
 
-> Gulpfile - javascript файл описывающий подключение пакетов, задачи gulp и при необходимости сервисные функции. <sup>[9]</sup>
+> Gulpfile - javascript файл описывающий подключение пакетов, задачи gulp и при необходимости сервисные функции.
 
 > Gulpfile создаётся в корне проекта
 
@@ -129,7 +129,7 @@ gulp.task('default', ['buildcss']);
 
 > Функция gulp.src образует поток (stream) который направляется в трубу (pipe). Каждый сегмент трубы вызывает пакет-обработчик и снова образует поток. Таким образом на один поток можно ставить несколько обработчиков
 
-> Обработчик gulp.dest записывает текущий поток в файл в указанную папку. Имя файла при этом сохраняется исходное и чтобы его изменить применяется пакет gulp-rename <sup>[10]</sup>
+> Обработчик gulp.dest записывает текущий поток в файл в указанную папку. Имя файла при этом сохраняется исходное и чтобы его изменить применяется пакет gulp-rename <sup>[13]</sup>
 
 > gulp.dest не завершает поток, а вставляется в секцию трубы
 
@@ -143,9 +143,9 @@ gulp.task('default', ['buildcss']);
 
 ``npm install gulp-csso --save-dev``
 
-> **CSSO** (CSS Optimizer) gulp-версия пакета оптимизации и минификации CSS файла. CSSO выполняет минимизацию как без изменения структуры, так и структурную оптимизацию <sup>[10.1]</sup>
+> **CSSO** (CSS Optimizer) gulp-версия пакета оптимизации и минификации CSS файла. CSSO выполняет минимизацию как без изменения структуры, так и структурную оптимизацию <sup>[14]</sup>
 
-> Чтобы не объявлять каждый gulp-пакет в отдельную переменную используем пакет gulp-load-plugins <sup>[11]</sup>, который автоматический загружает пакеты в объект при обращении. Установка: ``npm install gulp-load-plugins --save-dev``
+> Чтобы не объявлять каждый gulp-пакет в отдельную переменную используем пакет gulp-load-plugins <sup>[15]</sup>, который автоматический загружает пакеты в объект при обращении. Установка: ``npm install gulp-load-plugins --save-dev``
 
 > В итоге задача **buildcss** будет выглядеть так:
 
@@ -171,7 +171,7 @@ gulp.task('default', ['buildcss']);
 
 #### Шаблоны имён файлов
 
-> gulp.src может принимать не только один файл, но и массив имён и массив шаблонов <sup>[12]</sup>
+> gulp.src может принимать не только один файл, но и массив имён и массив шаблонов <sup>[16]</sup>
 
 * ``'*.js'`` - любое имя файла
 * ``'filename.*'`` - любое расширение
@@ -187,7 +187,7 @@ gulp.task('default', ['buildcss']);
 
 ``gulp watch``
 
-> Встроенная функция gulp.watch для отслеживания изменений в файлах проекта и запуска заданных задач <sup>[13]</sup>
+> Встроенная функция gulp.watch для отслеживания изменений в файлах проекта и запуска заданных задач <sup>[17]</sup>
 
 ```javascript
 gulp.task('watch', function() {
@@ -236,11 +236,11 @@ gulp.task('buildcss', function() {
 
 ``sudo npm install connect --save-dev``
 
-> Connect - фреймворк являющийся прослойкой (middleware) к HTTP серверу для обработки запросов
+> Connect - фреймворк являющийся прослойкой (middleware) к HTTP серверу для обработки запросов <sup>[18]</sup>
 
 ``npm install serve-static --save-dev``
 
-> serve-static - connect middleware для вывода статичных файлов
+> serve-static - connect middleware для вывода статичных файлов <sup>[19]</sup>
 
 ``npm install connect-livereload --save-dev``
 
@@ -289,7 +289,77 @@ gulp.task('watch', ['server'], function() {
 
 > В примере первый мониторинг за less файлами вызывает задачу buildcss, при этом происходит компиляция less в css в каталоге ./app/styles/, который отслеживается вторым мониторингом и вызывает событие liveserver.changed с передачей имени изменённого файла. Livereload, при получении события changed отправляет имя файла браузеру и тот перерисовывает стили на странице
 
-#### Jade
+#### А что еще?
+
+> Less позволяет облегчить написание CSS стилей, избавиться от рутины, добавить модульность, предустановленные значения, логику
+
+> А как же быть с html? Зачастую html при вёрстке сложных страниц разрастается до огромных размеров с различными вариантами блоков и списков. Почему бы уже на этапе вёрстки не добавить в html модульность и логику?
+
+#### Jade [jād]. Node Template Engine
+
+> Jade - высокопроизводительный шаблонизатор, источником вдохновения для которого послужил Haml <sup>[20]</sup>
+
+> Достоинства шаблонизатора: высокая читаемость, примеси, инклуды, наследование, экранирование переменных, фильтры, вложенность элементов определяется отступами
+
+```jade
+doctype html
+html(lang="en")
+  head
+    title= pageTitle
+    script(type='text/javascript').
+      if (foo) {
+         bar(1 + 5)
+      }
+  body
+    h1 Jade - node template engine
+    #container.col
+      if youAreUsingJade
+        p You are amazing
+      else
+        p Get on it!
+      p.
+        Jade is a terse and simple
+        templating language with a
+        strong focus on performance
+        and powerful features.
+```
+
+##### Jade. Задача компиляции шаблона
+
+``npm install gulp-jade --save-dev``
+
+> Создаём новую задачу template для компиляции jade-шаблона, не забываем добавить обработку ошибок, чтобы при ошибке синтаксиса скрипт не прекращал работу
+
+```javascript
+gulp.task('template', function() {
+  return gulp.src('./index.jade')
+             .pipe(plugins.jade())
+             .on('error', function(error) {
+                 console.log(error);
+                 this.end();
+             })
+             .pipe(gulp.dest('./app'));
+});
+```
+
+##### Jade. Мониторинг и обновление
+
+> В задачу watch добавляем новый мониторинг jade файлов и запуск задачи template
+
+```javascript
+gulp.watch(['*.jade'], ['template']);
+```
+
+> А для обновления livereload добавляем в мониторинг полученный после компиляции jade html файл
+
+```javascript
+gulp.watch([
+  './app/styles/*.css',
+  './app/*.html'
+]).on('change', function(file) {
+  liveserver.changed(file.path);
+});
+```
 
 ---
 
@@ -297,16 +367,19 @@ gulp.task('watch', ['server'], function() {
 [2]:http://nodejs.org/ "Node.js"
 [3]:http://nodegeek.net/2014/01/node-js-ecosystem/ "Node.js ecosystem"
 [4]:https://www.npmjs.org/ "Node Packaged Modules"
-[4.1]:https://ru.wikipedia.org/wiki/Интерфейс_командной_строки "Интерфейс командной строки"
-[4.2]:http://bliker.github.io/cmder/ "cmder"
-[4.3]:https://ru.wikipedia.org/wiki/Windows_PowerShell "Windows PowerShell"
-[5]:https://www.npmjs.org/doc/cli/npm-init.html "Interactively create a package.json file"
-[6]:https://www.npmjs.org/doc/files/package.json.html "Specifics of npm's package.json handling"
-[7]:http://browsenpm.org/package.json "package.json structure"
-[8]:http://howtonode.org/managing-module-dependencies "Managing module dependencies"
-[9]:https://www.npmjs.org/package/gulp "The streaming build system"
-[10]:https://github.com/hparra/gulp-rename "gulp-rename"
-[10.1]:http://ru.bem.info/tools/optimizers/csso/ "CSS Optimizer"
-[11]:https://github.com/jackfranklin/gulp-load-plugins "gulp-load-plugins"
-[12]:https://github.com/isaacs/minimatch "A minimal matching utility"
-[13]:http://zencoder.ru/gulp-watch/ "gulp-watch"
+[5]:https://ru.wikipedia.org/wiki/Интерфейс_командной_строки "Интерфейс командной строки"
+[6]:http://bliker.github.io/cmder/ "cmder"
+[7]:https://ru.wikipedia.org/wiki/Windows_PowerShell "Windows PowerShell"
+[8]:https://www.npmjs.org/doc/cli/npm-init.html "Interactively create a package.json file"
+[9]:https://www.npmjs.org/doc/files/package.json.html "Specifics of npm's package.json handling"
+[10]:http://browsenpm.org/package.json "package.json structure"
+[11]:http://howtonode.org/managing-module-dependencies "Managing module dependencies"
+[12]:https://www.npmjs.org/package/gulp "The streaming build system"
+[13]:https://github.com/hparra/gulp-rename "gulp-rename"
+[14]:http://ru.bem.info/tools/optimizers/csso/ "CSS Optimizer"
+[15]:https://github.com/jackfranklin/gulp-load-plugins "gulp-load-plugins"
+[16]:https://github.com/isaacs/minimatch "A minimal matching utility"
+[17]:http://zencoder.ru/gulp-watch/ "gulp-watch"
+[18]:https://www.npmjs.org/package/connect "High performance middleware framework"
+[19]:https://www.npmjs.org/package/serve-static "Serve static files"
+[20]:http://jade-lang.com/ "Node Template Engine"
