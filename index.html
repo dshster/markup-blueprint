@@ -229,12 +229,45 @@ gulp.task('default', ['buildcss']);
 
 	<section class="slide"><div>
 		<h2>Livereload. Автоматическое обновление</h2>
+		<div><code class="console-prompt">npm install <strong>connect</strong> --save-dev</code></div>
+		<div><code class="console-prompt">npm install <strong>serve-static</strong> --save-dev</code></div>
+		<div><code class="console-prompt">npm install <strong>connect-livereload</strong> --save-dev</code></div>
+		<div><code class="console-prompt">npm install <strong>gulp-livereload</strong> --save-dev</code></div>
 	</div></section>
 
 	<section class="slide"><div>
+		<h3>Livereload. Задача server</h3>
+		<pre><div class="code javascript">gulp.task('server', function(next) {
+    var server = require('connect')(),
+        servestatic = require('serve-static');
+
+    server.use(require('connect-livereload')({
+        port: 35729
+    }));
+
+    server.use(servestatic('./app', {
+        'index': ['index.html', 'index.htm']
+    }));
+
+    server.listen(3000, next);
+});
+		</div></pre>
 	</div></section>
 
 	<section class="slide"><div>
+		<h3>Livereload. Задача watch</h3>
+		<pre><div class="code javascript">gulp.task('watch', ['server'], function() {
+	var liveserver = plugins.livereload();
+
+	gulp.watch(['*.less'], ['buildcss']);
+
+	gulp.watch([
+		'./app/styles/*.css'
+	]).on('change', function(file) {
+		liveserver.changed(file.path);
+	});
+});
+		</div></pre>
 	</div></section>
 
 	<section class="slide"><div>

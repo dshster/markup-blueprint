@@ -18,9 +18,12 @@
   font-size: 20px;
 }
 .slide h3 {
-  margin: 37px 0 37px;
+  margin: 0 0 37px;
   color: #666;
   font: 700 40px/1 'PT Sans Narrow',sans-serif;
+}
+.slide h2 ~ h3 {
+  margin: 37px 0 37px;
 }
 .slide div {
   margin: 0 0 13px;

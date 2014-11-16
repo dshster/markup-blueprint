@@ -226,7 +226,7 @@ gulp.task('buildcss', function() {
 });
 ```
 
-> Команда ``console.log(error)`` выводит сообщение об ошибке, ``this.end();`` завершает текущий поток, чтобы gulp.watch мог обработать следующий
+> Команда ``console.log(error)`` выводит сообщение об ошибке, ``this.end()`` завершает текущий поток, чтобы gulp.watch мог обработать следующий
 
 #### Livereload. Автоматическое обновление
 
@@ -236,15 +236,15 @@ gulp.task('buildcss', function() {
 
 ``sudo npm install connect --save-dev``
 
-> Connect - фреймворк являющийся прослойкой (middleware) к http серверу для обработки запросов
+> Connect - фреймворк являющийся прослойкой (middleware) к HTTP серверу для обработки запросов
 
 ``npm install serve-static --save-dev``
 
-> Connect middleware для вывода статичных файлов
+> serve-static - connect middleware для вывода статичных файлов
 
 ``npm install connect-livereload --save-dev``
 
-> Connect middleware для добавления скрипта livereload на страницу организовывающий асинхронное обновление стилей и обновление страницы при изменении шаблонов
+> connect-livereload - connect middleware для добавления скрипта livereload на страницу организовывающий асинхронное обновление стилей и обновление страницы при изменении шаблонов
 
 ``sudo npm install gulp-livereload --save-dev``
 
@@ -269,7 +269,7 @@ gulp.task('server', function(next) {
 });
 ```
 
-> servestatic обеспечивает доступ к статичным файлам в каталоге app, а server.listen прослушивание порта 3000 по адресу http://127.0.0.1
+> servestatic обеспечивает доступ к статичным файлам в каталоге ./app, а server.listen прослушивание порта 3000 по адресу http://127.0.0.1
 
 ##### Задача watch
 
@@ -285,7 +285,7 @@ gulp.task('watch', ['server'], function() {
 });
 ```
 
-> За изменениями в файлах следит gulp.watch. При вызове watch запускается задача server и запускается мониторинг по шаблонам.
+> За изменениями в файлах следит gulp.watch. При вызове watch запускается задача server (которая добавляется в зависимости) и запускается мониторинг по шаблонам (*.less и ./app/styles/*.css).
 
 > В примере первый мониторинг за less файлами вызывает задачу buildcss, при этом происходит компиляция less в css в каталоге ./app/styles/, который отслеживается вторым мониторингом и вызывает событие liveserver.changed с передачей имени изменённого файла. Livereload, при получении события changed отправляет имя файла браузеру и тот перерисовывает стили на странице
 
