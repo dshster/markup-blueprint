@@ -8,37 +8,6 @@
 	<link rel="stylesheet" href="content/styles/presentation.css">
 	<link rel="stylesheet" href="content/components/highlightjs/styles/default.css">
 	<link rel="stylesheet" href="content/components/highlightjs/styles/monokai_sublime.css">
-	<style>
-	.console-prompt:before {
-		color: #6bb6e1;
-		content: '~/blueprint$ ';
-		font-size: 20px;
-	}
-	.slide h3 {
-		margin: 37px 0 37px;
-		color: #666;
-		font: 700 40px/1 'PT Sans Narrow',sans-serif;
-	}
-	.slide div {
-		margin: 0 0 13px;
-	}
-	.slide>div { padding-top: 55px; }
-	.slide pre .code {
-		margin: 0 70px 0 0;
-		line-height: 28px;
-		font-family: 'PT Mono', monospace;
-		border-radius: 8px;
-		padding: 10px 8px 1px;
-		white-space: pre;
-		font-size: 18px;
-	}
-	.note:before { display: none; }
-	.note {
-		margin: 37px 0 0;
-		padding: 0 0 0 30px;
-		border-left: 5px solid #eee;
-	}
-	</style>
 	<title>Сборка фронтенда</title>
 </head>
 <body class="list">
@@ -231,15 +200,53 @@ gulp.task('default', ['buildcss']);
 	<section class="slide"><div>
 		<h2>Watch. Мониторинг изменений</h2>
 		<p><code class="console-prompt">gulp watch</code></p>
-<pre><div class="code javascript">gulp.task('watch', function() {
+		<pre><div class="code javascript">gulp.task('watch', function() {
 	gulp.watch(['*.less'], ['buildcss']);
 });
-</div></pre>
-	<p>Запуск мониторинга <code>gulp.watch</code>. При изменениях в любом файле с расширением less в текущем каталоге запускается задача buildcss</p>
+		</div></pre>
+		<div>Запуск мониторинга <code>gulp.watch</code></div>
+		<div>При изменениях в любом файле с расширением less в текущем каталоге запускается задача buildcss</div>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>Обработка ошибок</h2>
+		<pre><div class="code javascript">gulp.task('buildcss', function() {
+    return gulp.src('./styles.less')
+           .pipe(plugins.less())
+           .on('error', function(error) {
+             console.log(error);
+             this.end();
+           })
+           .pipe(plugins.autoprefixer(
+             ['last 3 versions', 'ie 10', 'opera 12']
+           ))
+           .pipe(plugins.csso())
+           .pipe(plugins.rename('styles.min.css'))
+           .pipe(gulp.dest('./app/styles'));
+});
+		</div></pre>
 	</div></section>
 
 	<section class="slide"><div>
 		<h2>Livereload. Автоматическое обновление</h2>
+	</div></section>
+
+	<section class="slide"><div>
+	</div></section>
+
+	<section class="slide"><div>
+	</div></section>
+
+	<section class="slide"><div>
+	</div></section>
+
+	<section class="slide"><div>
+	</div></section>
+
+	<section class="slide"><div>
+	</div></section>
+
+	<section class="slide"><div>
 	</div></section>
 
 	<section class="slide"><div>

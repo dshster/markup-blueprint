@@ -3,11 +3,41 @@
   box-sizing: border-box;
   background-image: url('../images/19.jpg');
   background-size: cover;
+  background-attachment: fixed;
 }
 .caption {
   color: #fff;
-  font-size: 14px;  
+  font-size: 14px;
 }
 .caption h1 {
   text-shadow: 1px 2px 0 #333;
+}
+.console-prompt:before {
+  color: #6bb6e1;
+  content: '~/blueprint$ ';
+  font-size: 20px;
+}
+.slide h3 {
+  margin: 37px 0 37px;
+  color: #666;
+  font: 700 40px/1 'PT Sans Narrow',sans-serif;
+}
+.slide div {
+  margin: 0 0 13px;
+}
+.slide>div { padding-top: 55px; }
+.slide pre .code {
+  margin: 0 70px 0 0;
+  line-height: 28px;
+  font-family: 'PT Mono', monospace;
+  border-radius: 8px;
+  padding: 10px 8px 1px;
+  white-space: pre;
+  font-size: 18px;
+}
+.note:before { display: none; }
+.note {
+  margin: 37px 0 0;
+  padding: 0 0 0 30px;
+  border-left: 5px solid #eee;
 }
