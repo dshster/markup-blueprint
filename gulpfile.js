@@ -44,7 +44,7 @@ gulp.task('server', function(next) {
 gulp.task('watch', ['server'], function() {
 	var server = $.livereload();
 
-	gulp.watch([paths.template + '/**'], function(event) {
+	gulp.watch([paths.template + '/*.jade'], function(event) {
 		console.log('Template ' + event.path + ' was ' + event.type);
 		return template();
 	});
