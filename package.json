@@ -10,16 +10,17 @@
   "license": "ISC",
   "devDependencies": {
     "connect": "latest",
-    "serve-static": "latest",
     "connect-livereload": "latest",
     "gulp": "latest",
-    "gulp-load-plugins": "latest",
-    "gulp-livereload": "latest",
+    "gulp-autoprefixer": "latest",
+    "gulp-data": "^1.0.2",
+    "gulp-filesize": "latest",
     "gulp-jade": "latest",
     "gulp-less": "latest",
+    "gulp-livereload": "latest",
+    "gulp-load-plugins": "latest",
     "gulp-rename": "latest",
-    "gulp-filesize": "latest",
-    "gulp-autoprefixer": "latest"
+    "serve-static": "latest"
   },
   "engines": {
     "node": ">=0.10.0"

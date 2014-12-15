@@ -3,6 +3,7 @@
 
 var gulp = require('gulp'),
     $ = require('gulp-load-plugins')(),
+    path = require('path'),
     paths = require('./preferences.json');
 
 var styles = function(minify) {
@@ -21,6 +22,9 @@ var styles = function(minify) {
 
 var template = function() {
 	return gulp.src('./' + paths.template + '/index.jade')
+	           .pipe($.data(function(file) {
+	               return require('./' + paths.data + '/' + path.basename(file.path) + '.json');
+	           }))
 	           .pipe($.jade())
 	           .on('error', function(error) {
 		             console.log(error);
